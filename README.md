@@ -1,5 +1,5 @@
 # XCode Project File Parser
-
+I tried the project: [xcode-project-parser](https://github.com/mestevens/xcode-project-parser) to parse xcode project file. But it is too slow because `String` objects are created/destroyed constantly. So I implement a parser using antlr4. And the project also contains a demo.
 
 ## Gradle Project Structure
     | 
@@ -16,6 +16,6 @@
     |       |--src/main/antlr 
 
 ## Build
-1) cd to project folder
-2) gradlew.bat build
-3) open project by Intellij Idea
+*   cd to project folder
+*   perform `gradlew.bat build` in terminal
+*   open project using Intellij Idea
