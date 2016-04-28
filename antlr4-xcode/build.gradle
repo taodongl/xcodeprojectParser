@@ -1,0 +1,26 @@
+apply plugin: 'antlr'
+
+generateGrammarSource {
+    maxHeapSize = "64m"
+    arguments += ["-visitor", "-package", "net.antlr.xcode"]
+}
+
+dependencies {
+    antlr "org.antlr:antlr4:4.5.3"
+}
+
+task cleanSrc(type: Delete) {
+    FileTree tree = fileTree(dir: '../demo/src/main/java/net/antlr/xcode')
+    tree.exclude ".gitignore"
+    delete tree
+}
+
+task copySrc(type: Copy, dependsOn: cleanSrc) {
+    from('build/generated-src/antlr/main') {
+        include '**/*.java'
+    }
+    into '../demo/src/main/java/net/antlr/xcode'
+}
+
+classes.dependsOn copySrc
+clean.dependsOn cleanSrc
